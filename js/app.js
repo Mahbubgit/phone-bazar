@@ -71,13 +71,16 @@ const displaySearchResult = phones => {
         clearSinglePhoneDetail();
 
         phones.forEach(phone => {
+            // console.log(phone);   //<div onclick="loadPhoneDetail('${phone.slug}')" class="card w-75">
             const div = document.createElement('div');
             div.classList.add('col');
             div.innerHTML = `
-            <div onclick="loadPhoneDetail('${phone.slug}')" class="card w-75">
+            <div class="card w-75">
                 <img src="${phone.image}" class="card-img-top" alt="...">
                 <div class="card-body">
+                    <h2 class="card-title">${phone.brand} </h2>
                     <h4 class="card-title">${phone.phone_name}</h4>
+                    <button onclick="loadPhoneDetail('${phone.slug}')" class="btn btn-success w-50">Detail</button>
                 </div>
              </div>
             `;
@@ -96,6 +99,7 @@ const loadPhoneDetail = id => {
 }
 
 const displayPhoneDetail = phone => {
+    console.log(phone.data.mainFeatures);
     const phoneDetails = document.getElementById('phone-detail');
     phoneDetails.textContent = '';
     const div = document.createElement('div');
@@ -103,10 +107,19 @@ const displayPhoneDetail = phone => {
     <div class="card h-100 my-1 p-2">
         <img src="${phone.data.image}" class="card-img-top" alt="...">
         <div class="card-body">
-            <h4 class="card-title">${phone.data.name}</h4>
-            <p class="card-title">${phone.data.releaseDate ? phone.data.releaseDate : 'No Release Date Found'}</p>
-            <p class="card-title">${phone.data.mainFeatures.chipSet}</p>
-            <p class="card-title">${phone.data.mainFeatures.memory}</p>
+            <h4 class="card-title">Name:        ${phone.data.name}</h4>
+            <h5 class="card-title text-center text-white bg-dark">Main Features</h5>
+            <p class="card-title">Release Date: ${phone.data.releaseDate ? phone.data.releaseDate : 'No Release Date Found'}</p>
+            <hr>
+            <p class="card-title">Chipset:      ${phone.data.mainFeatures.chipSet}</p>
+            <hr>
+            <p class="card-title">Display Size: ${phone.data.mainFeatures.chipSet}</p>
+            <hr>
+            <p class="card-title">RAM:          ${phone.data.mainFeatures.memory}</p>
+            <hr>
+            <p class="card-title">ROM:          ${phone.data.mainFeatures.storage}</p>
+            <hr>
+            <p class="card-title">Sensors: ${phone.data.mainFeatures.sensors}</p>
         </div>
     </div>
     `;
