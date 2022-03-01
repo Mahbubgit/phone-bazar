@@ -74,7 +74,7 @@ const displaySearchResult = phones => {
             const div = document.createElement('div');
             div.classList.add('col');
             div.innerHTML = `
-            <div onclick="loadPhoneDetail('${phone.slug}')" class="card h-100 w-75 m-3 p-3">
+            <div onclick="loadPhoneDetail('${phone.slug}')" class="card w-75">
                 <img src="${phone.image}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h4 class="card-title">${phone.phone_name}</h4>

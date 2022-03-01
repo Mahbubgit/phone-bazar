@@ -12,15 +12,16 @@
 
 <body class="bg-gray">
     <h2 class="text-center text-info bg-dark my-3">PHONE BAZAR</h2>
-    <div class="input-group mb-3 mx-auto w-50">
-        <input id="search-field" type="text" class="form-control" placeholder="Search Your Favorite Phone"
-            aria-label="Search Your Favorite Phone" aria-describedby="button-addon2">
-        <button onclick="searchPhone()" id="search-button" class="btn btn-outline-secondary"
-            type="button">Search<button>
-                <button onclick="searchAllPhone()" id="search-all-button" class="btn btn-outline-secondary"
-                    type="button">Search All<button>
+    <div class="w-50 mx-auto my-2">
+        <div class="mb-2">
+            <input id="search-field" type="text" class="form-control" placeholder="Search Your Favorite Phone">
+        </div>
+        <div class="d-flex justify-content-evenly">
+            <button onclick="searchPhone()" id="search-button" class="btn btn-success w-50 mx-1">Search</button>
+            <button onclick="searchAllPhone()" id="search-all-button" class="btn btn-success w-50 mx-1">Search
+                All</button>
+        </div>
     </div>
-
     <div>
         <p id="error-message" class="text-danger text-center mx-auto">
             Phone not found.
@@ -34,11 +35,11 @@
     </div>
 
     <!-- single phone details  -->
-    <div id="phone-detail" class="row row-cols-1 w-50 mx-auto">
+    <div id="phone-detail" class="row row-cols-md-3 row-cols-sm-12 mx-auto justify-content-center">
     </div>
 
-    <!-- phone search area  -->
-    <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+    <!-- phone search area -->
+    <div id="search-result" class="row row-cols-1 row-cols-md-3 g-2 m-2">
     </div>
 
     <script src="js/bootstrap.bundle.min.js"></script>
