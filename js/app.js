@@ -1,44 +1,76 @@
-const searchMobile = () => {
+/************************************
+ * Control error or empty message   *
+ * **********************************/
+const emptyMessage = displayStyle => {
+    document.getElementById('empty-message').style.display = displayStyle;
+}
+const errorMessage = displayStyle => {
+    document.getElementById('error-message').style.display = displayStyle;
+}
+
+/*********************
+ * Control Spinner   *
+ * *******************/
+const toggleSpinner = displayStyle => {
+    document.getElementById('spinner').style.display = displayStyle;
+}
+
+/*************************
+ * Control Search Result *
+ * **********************/
+const clearSearchResult = () => {
+    document.getElementById('search-result').textContent = '';
+}
+
+/********************************
+ * Control Single Phone Detail  *
+ * *****************************/
+const clearSinglePhoneDetail = () => {
+    document.getElementById('phone-detail').textContent = '';
+}
+
+/*****************************
+ * Search by Phone Name     **
+ * ***************************/
+const searchPhone = () => {
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
-    // clear data
-    // searchField.value = '';
+    // clear search field
+    searchField.value = '';
 
-    if (searchText == '') {
-        // please write something to display
+    if (searchText == '') {  // When search field is empty
+        emptyMessage('block');
+        errorMessage('none');
+        clearSearchResult();
+        clearSinglePhoneDetail();
     }
     else {
-        // load data
+        emptyMessage('none');
+
+        // load valid search data
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
         fetch(url)
             .then(res => res.json())
-            .then(data => displaySearchResult(data.data))
-            .catch(error => displayError(error));
+            .then(data => displaySearchResult(data.data));
     }
 }
 
-searchMobile('phone');
-
-const displayError = error => {
-    document.getElementById('error-message').style.display = 'block';
-}
-
-//
+// display search result
 const displaySearchResult = phones => {
-    // console.log(phones);
+    // display spinner
+    toggleSpinner('block');
     const searchResult = document.getElementById('search-result');
-    // console.log(searchResult);
+    // clean previous search result
     searchResult.textContent = '';
-    if (phones == null) {
-        const div = document.createElement('div');
-        div.innerHTML = `
-        <p class="text-center mx-auto">No result found!</p>
-        `;
-        searchResult.appendChild(div);
+    if (phones.length == 0) {
+        errorMessage('block');
+        toggleSpinner('none');
     }
     else {
+        errorMessage('none');
+        clearSinglePhoneDetail();
+
         phones.forEach(phone => {
-            // console.log(phone);
             const div = document.createElement('div');
             div.classList.add('col');
             div.innerHTML = `
@@ -50,12 +82,13 @@ const displaySearchResult = phones => {
              </div>
             `;
             searchResult.appendChild(div);
-        })
+        });
+        // hide spinner
+        toggleSpinner('none');
     }
 }
 
 const loadPhoneDetail = id => {
-    // console.log(id);
     const url = `https://openapi.programming-hero.com/api/phone/${id}`;
     fetch(url)
         .then(res => res.json())
@@ -63,13 +96,11 @@ const loadPhoneDetail = id => {
 }
 
 const displayPhoneDetail = phone => {
-    console.log(phone);
     const phoneDetails = document.getElementById('phone-detail');
     phoneDetails.textContent = '';
     const div = document.createElement('div');
-    div.classList.add('card');
     div.innerHTML = `
-    <div class="card h-75 mt-2 p-2">
+    <div class="card h-100 my-1 p-2">
         <img src="${phone.data.image}" class="card-img-top" alt="...">
         <div class="card-body">
             <h4 class="card-title">${phone.data.name}</h4>

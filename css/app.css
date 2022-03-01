@@ -1,3 +1,16 @@
 #error-message{
     display: none;
 }
+#empty-message{
+    display: none;
+}
+#spinner{
+    display: none;
+}
+.card{
+    border: 2px solid gray;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    /* display: none; */
+}

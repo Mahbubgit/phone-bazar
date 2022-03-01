@@ -11,29 +11,34 @@
 </head>
 
 <body class="bg-gray">
-    <h2 class="text-center">PHONE BAZAR</h2>
+    <h2 class="text-center text-info bg-dark my-3">PHONE BAZAR</h2>
     <div class="input-group mb-3 mx-auto w-50">
         <input id="search-field" type="text" class="form-control" placeholder="Search Your Favorite Phone"
             aria-label="Search Your Favorite Phone" aria-describedby="button-addon2">
-        <button onclick="searchMobile()" id="search-button" class="btn btn-outline-secondary"
+        <button onclick="searchPhone()" id="search-button" class="btn btn-outline-secondary"
             type="button">Search<button>
-                <button onclick="searchAllMobile()" id="search-all-button" class="btn btn-outline-secondary"
+                <button onclick="searchAllPhone()" id="search-all-button" class="btn btn-outline-secondary"
                     type="button">Search All<button>
     </div>
 
-    <div id="error-message">
-        <!-- <p id="error-message" class="text-danger"> -->
-        <p class="text-danger">
-            Mobile not found.
+    <div>
+        <p id="error-message" class="text-danger text-center mx-auto">
+            Phone not found.
+        </p>
+        <p id="empty-message" class="text-danger text-center mx-auto">
+            Please search by your favorite phone name.
+        </p>
+        <p id="spinner" class="text-primary text-center mx-auto">
+            Loading...
         </p>
     </div>
 
     <!-- single phone details  -->
-    <div id="phone-detail" class="card w-50 mx-auto">
+    <div id="phone-detail" class="row row-cols-1 w-50 mx-auto">
     </div>
 
     <!-- phone search area  -->
-    <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4">
+    <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4 mt-2">
     </div>
 
     <script src="js/bootstrap.bundle.min.js"></script>
