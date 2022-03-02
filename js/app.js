@@ -29,10 +29,11 @@ const clearSinglePhoneDetail = () => {
     document.getElementById('phone-detail').textContent = '';
 }
 
-/*****************************
- * Search by Phone Name     **
- * ***************************/
+/*************************************************************
+ * Search by Phone Name (Display 20 or less than 20 images)  *
+ * **********************************************************/
 const searchPhone = () => {
+    console.log('Search clicked');
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
     // clear search field
@@ -51,12 +52,14 @@ const searchPhone = () => {
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
         fetch(url)
             .then(res => res.json())
-            .then(data => displaySearchResult(data.data));
+            .then(data => displaySearch20Result(data.data));
     }
 }
 
-// display search result
-const displaySearchResult = phones => {
+/**************************
+ * display search result  *
+ **************************/
+const displaySearch20Result = phones => {
     // display spinner
     toggleSpinner('block');
     const searchResult = document.getElementById('search-result');
@@ -73,9 +76,8 @@ const displaySearchResult = phones => {
         phones.forEach(phone => {
             // console.log(phone);
             counter++;
-            if (counter <= 20) {
-                console.log('counter = ', counter);
-
+            if (counter <= 20) { // Display only 20 images if the result have more than 20.
+                // console.log('counter = ', counter);
                 const div = document.createElement('div');
                 div.classList.add('col');
                 div.innerHTML = `
@@ -84,7 +86,7 @@ const displaySearchResult = phones => {
                     <div class="card-body">
                         <h2 class="card-title">${phone.brand} </h2>
                         <h4 class="card-title">${phone.phone_name}</h4>
-                        <button onclick="loadPhoneDetail('${phone.slug}')" class="btn btn-success w-50">Detail</button>
+                        <button onclick="loadPhoneDetail('${phone.slug}')" class="btn btn-success w-75">Detail</button>
                     </div>
                  </div>
                 `;
@@ -95,6 +97,73 @@ const displaySearchResult = phones => {
         toggleSpinner('none');
     }
 }
+
+/************************For all search********************* */
+
+/**********************************************
+ * Search by Phone Name (Display all images)  *
+ * ********************************************/
+const searchAllPhone = () => {
+    const searchField = document.getElementById('search-field');
+    const searchText = searchField.value;
+    // clear search field
+    searchField.value = '';
+
+    if (searchText == '') {  // When search field is empty
+        emptyMessage('block');
+        errorMessage('none');
+        clearSearchResult();
+        clearSinglePhoneDetail();
+    }
+    else {
+        emptyMessage('none');
+
+        // load valid search data
+        const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
+        fetch(url)
+            .then(res => res.json())
+            .then(data => displaySearchAllResult(data.data));
+    }
+}
+
+/**************************
+ * display search result  *
+ **************************/
+const displaySearchAllResult = phones => {
+    // display spinner
+    toggleSpinner('block');
+    const searchResult = document.getElementById('search-result');
+    // clean previous search result
+    searchResult.textContent = '';
+    if (phones.length == 0) {
+        errorMessage('block');
+        toggleSpinner('none');
+    }
+    else {
+        errorMessage('none');
+        clearSinglePhoneDetail();
+        phones.forEach(phone => {
+            const div = document.createElement('div');
+            div.classList.add('col');
+            div.innerHTML = `
+                <div class="card w-75">
+                    <img src="${phone.image}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h2 class="card-title">${phone.brand} </h2>
+                        <h4 class="card-title">${phone.phone_name}</h4>
+                        <button onclick="loadPhoneDetail('${phone.slug}')" class="btn btn-success w-75">Detail</button>
+                    </div>
+                 </div>
+                `;
+            searchResult.appendChild(div);
+            // }
+        });
+        // hide spinner
+        toggleSpinner('none');
+    }
+}
+
+/**************************End all search******************* */
 
 /*****************************
  * Click on Details Section **
