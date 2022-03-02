@@ -1,9 +1,23 @@
+.img-size{
+    width: 5%;
+    /* height: 5%; */
+}
+.message-style{
+    background-color: lightgray;
+    font-weight: 700;
+    width: 50%;
+    margin: 5px;
+    padding: 5px;
+}
 #error-message{
     display: none;
+    /* display: block; */
 }
 #empty-message{
     display: none;
+    /* display: block; */
 }
+
 #spinner{
     display: none;
 }
@@ -13,4 +27,23 @@
     margin: 10px;
     padding: 10px;
     /* display: none; */
+}
+.text-p{
+    color: #a8329c;
+}
+.text-h{
+    color: #f0e811;
+}
+.text-o{
+    color: #f05411;
+}
+.text-n{
+    color: #09edde;
+}
+.text-e{
+    color: #b9bab8;
+}
+
+.text-yellow{
+    color: yellowgreen;
 }

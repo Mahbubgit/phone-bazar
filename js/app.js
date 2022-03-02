@@ -33,7 +33,7 @@ const clearSinglePhoneDetail = () => {
  * Search by Phone Name (Display 20 or less than 20 images)  *
  * **********************************************************/
 const searchPhone = () => {
-    console.log('Search clicked');
+    // console.log('Search clicked');
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
     // clear search field
@@ -176,7 +176,7 @@ const loadPhoneDetail = id => {
 }
 
 const displayPhoneDetail = phone => {
-    console.log(phone.data.mainFeatures);
+    // console.log(phone.data.mainFeatures);
     const phoneDetails = document.getElementById('phone-detail');
     phoneDetails.textContent = '';
     const div = document.createElement('div');
