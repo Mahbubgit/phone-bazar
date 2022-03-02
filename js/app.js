@@ -33,7 +33,8 @@ const clearSinglePhoneDetail = () => {
  * Search by Phone Name (Display 20 or less than 20 images)  *
  * **********************************************************/
 const searchPhone = () => {
-    // console.log('Search clicked');
+    // display spinner
+    toggleSpinner('block');
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
     // clear search field
@@ -44,6 +45,7 @@ const searchPhone = () => {
         errorMessage('none');
         clearSearchResult();
         clearSinglePhoneDetail();
+        toggleSpinner('none');
     }
     else {
         emptyMessage('none');
@@ -60,24 +62,23 @@ const searchPhone = () => {
  * display search result  *
  **************************/
 const displaySearch20Result = phones => {
-    // display spinner
-    toggleSpinner('block');
+
     const searchResult = document.getElementById('search-result');
     // clean previous search result
     searchResult.textContent = '';
     if (phones.length == 0) {
+        // display error message and hide spinner
         errorMessage('block');
         toggleSpinner('none');
     }
     else {
+        // hide error message and previous phone detail(if exist)
         errorMessage('none');
         clearSinglePhoneDetail();
         let counter = 0;
         phones.forEach(phone => {
-            // console.log(phone);
             counter++;
             if (counter <= 20) { // Display only 20 images if the result have more than 20.
-                // console.log('counter = ', counter);
                 const div = document.createElement('div');
                 div.classList.add('col');
                 div.innerHTML = `
@@ -104,6 +105,8 @@ const displaySearch20Result = phones => {
  * Search by Phone Name (Display all images)  *
  * ********************************************/
 const searchAllPhone = () => {
+    // display spinner
+    toggleSpinner('block');
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
     // clear search field
@@ -114,6 +117,7 @@ const searchAllPhone = () => {
         errorMessage('none');
         clearSearchResult();
         clearSinglePhoneDetail();
+        toggleSpinner('none');
     }
     else {
         emptyMessage('none');
@@ -130,8 +134,7 @@ const searchAllPhone = () => {
  * display search result  *
  **************************/
 const displaySearchAllResult = phones => {
-    // display spinner
-    toggleSpinner('block');
+
     const searchResult = document.getElementById('search-result');
     // clean previous search result
     searchResult.textContent = '';
