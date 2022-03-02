@@ -99,11 +99,9 @@ const displaySearch20Result = phones => {
     }
 }
 
-/************************For all search********************* */
-
-/**********************************************
- * Search by Phone Name (Display all images)  *
- * ********************************************/
+/******************************************************
+ * Start of Search by Phone Name (Display all images)  *
+ * ****************************************************/
 const searchAllPhone = () => {
     // display spinner
     toggleSpinner('block');
@@ -130,9 +128,9 @@ const searchAllPhone = () => {
     }
 }
 
-/**************************
- * display search result  *
- **************************/
+/*************************
+ * Display Search Result *
+ *************************/
 const displaySearchAllResult = phones => {
 
     const searchResult = document.getElementById('search-result');
@@ -166,11 +164,13 @@ const displaySearchAllResult = phones => {
     }
 }
 
-/**************************End all search******************* */
+/*****************************************************
+ * End of Search by Phone Name (Display all images) **
+ * ***************************************************/
 
-/*****************************
- * Click on Details Section **
- * ***************************/
+/****************************
+ * Click on Details Button **
+ * **************************/
 const loadPhoneDetail = id => {
     const url = `https://openapi.programming-hero.com/api/phone/${id}`;
     fetch(url)

@@ -1,6 +1,5 @@
 .img-size{
     width: 5%;
-    /* height: 5%; */
 }
 .message-style{
     background-color: lightgray;
@@ -11,21 +10,20 @@
 }
 #error-message{
     display: none;
-    /* display: block; */
 }
 #empty-message{
     display: none;
-    /* display: block; */
 }
-
-
 .card{
     border: 2px solid gray;
     border-radius: 10px;
     margin: 10px;
     padding: 10px;
-    /* display: none; */
 }
+
+/*******************************************
+ * Start to Design of Portal Heading Name **
+ *******************************************/
 .text-p{
     color: #a8329c;
 }
@@ -48,13 +46,16 @@
 .text-white{
     color: white;
 }
-/*
-spinner Setting
-*/
 
+/*******************************************
+ * End of Design of Portal Heading Name **
+ *******************************************/
+
+/*************************************
+ * Start of Design of Spinner Style **
+ *************************************/
 #spinner{
     display: none;
-    /* display: block; */
     border: 16px solid #f3f3f3;
     border-radius: 50%;
     border-top: 16px solid blue;
@@ -76,3 +77,6 @@ spinner Setting
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
+/***********************************
+ * End of Design of Spinner Style **
+ ***********************************/
