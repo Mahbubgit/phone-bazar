@@ -69,28 +69,36 @@ const displaySearchResult = phones => {
     else {
         errorMessage('none');
         clearSinglePhoneDetail();
-
+        let counter = 0;
         phones.forEach(phone => {
-            // console.log(phone);   //<div onclick="loadPhoneDetail('${phone.slug}')" class="card w-75">
-            const div = document.createElement('div');
-            div.classList.add('col');
-            div.innerHTML = `
-            <div class="card w-75">
-                <img src="${phone.image}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h2 class="card-title">${phone.brand} </h2>
-                    <h4 class="card-title">${phone.phone_name}</h4>
-                    <button onclick="loadPhoneDetail('${phone.slug}')" class="btn btn-success w-50">Detail</button>
-                </div>
-             </div>
-            `;
-            searchResult.appendChild(div);
+            // console.log(phone);
+            counter++;
+            if (counter <= 20) {
+                console.log('counter = ', counter);
+
+                const div = document.createElement('div');
+                div.classList.add('col');
+                div.innerHTML = `
+                <div class="card w-75">
+                    <img src="${phone.image}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h2 class="card-title">${phone.brand} </h2>
+                        <h4 class="card-title">${phone.phone_name}</h4>
+                        <button onclick="loadPhoneDetail('${phone.slug}')" class="btn btn-success w-50">Detail</button>
+                    </div>
+                 </div>
+                `;
+                searchResult.appendChild(div);
+            }
         });
         // hide spinner
         toggleSpinner('none');
     }
 }
 
+/*****************************
+ * Click on Details Section **
+ * ***************************/
 const loadPhoneDetail = id => {
     const url = `https://openapi.programming-hero.com/api/phone/${id}`;
     fetch(url)
